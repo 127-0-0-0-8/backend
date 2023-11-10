@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  my-php-app:
+    container_name: my-php-app
+    build: ./
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql-server
+    volumes:
+      - ./:/app
+  mysql-server:
+    container_name: my-mysql-server
+    image: mysql/mysql-server
+    ports:
+      - 3306:3306
