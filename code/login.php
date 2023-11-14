@@ -17,16 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $name = $_POST["name"];
             $password = $_POST["password"];
     
-            $result = SelectFromDatabase("login", "name, password", "name='$name' and password='$password'");
+            // $result = SelectFromDatabase("login", "name, password", "name='$name' and password='$password'");
+            $result = SelectFromDatabase("login", "name, password", "name='$name'");
     
             if ($result && $result->rowCount() > 0) {
                 // while ($row = $result->fetch(\PDO::FETCH_ASSOC)) {
                 //     echo "Login success! Username: " . $row["name"] . " / Password: " . $row["password"] . "<br>";
                 // }
-                $_SESSION['isLoggedIn'] = true;
-                $_SESSION["name"] = $name;
-                header("Location: ./todo");
-                exit;
+                $truePassword = $result->fetch(\PDO::FETCH_ASSOC)["password"];
+                if (password_verify($password, $truePassword)) {
+                    $_SESSION['isLoggedIn'] = true;
+                    $_SESSION["name"] = $name;
+                    header("Location: ./todo");
+                    exit;
+                }
             } else {
                 echo "No matching records found.";
             }

@@ -8,7 +8,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['name']) && isset($_POST['password'])) {
         $name = $_POST['name'];
-        $password = $_POST['password'];
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
         // Save the user's name and password to the database
         $values = array($name, $password);
