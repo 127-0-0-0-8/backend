@@ -10,7 +10,7 @@ $total_characters_on_image = 6;
 //The characters that can be used in the CAPTCHA code.
 //avoid all confusing characters and numbers (For example: l, 1 and i)
 // $possible_captcha_letters = 'bcdfghjkmnpqrstvwxyz23456789';
-$possible_captcha_letters = 'wasd';
+$possible_captcha_letters = 'a';
 $captcha_font = '/var/www/html/captcha/NotoSansCJK-Regular.ttc';
 
 $random_captcha_dots = 50;
@@ -28,7 +28,7 @@ $captcha_code .= substr(
 $count++;
 }
 
-$captcha_font_size = $captcha_image_height * 0.65;
+$captcha_font_size = $captcha_image_height * 0.55;
 $captcha_image = @imagecreate(
 	$captcha_image_width,
 	$captcha_image_height
