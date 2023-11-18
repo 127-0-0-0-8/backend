@@ -49,17 +49,17 @@ docker-compose up -d
 ```
 
 ```bash
-# 取得 IP
+# 取得 Docker container 的 IP
 docker inspect \
   -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
 ```
 
 ```bash
 a2enmod rewrite
-... restart
+service apache2 restart
 ```
 
-```
+```bash
 # 還要搭配原本的 Dockerfile
 docker run --name php-apache -v $(pwd)/php/:/var/www/html/ -p 8081:80 php:8.0-apache
 ```
